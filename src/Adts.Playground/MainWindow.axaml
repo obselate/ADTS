@@ -1,0 +1,66 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Adts.Playground.MainWindow"
+        Title="ADTS Playground (Avalonia 11)"
+        Width="860"
+        Height="520">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="adts.color.surface.canvas">#FFFFFFFF</SolidColorBrush>
+                    <SolidColorBrush x:Key="adts.color.surface.card">#FFF3F6FC</SolidColorBrush>
+                    <SolidColorBrush x:Key="adts.color.text.primary">#FF101622</SolidColorBrush>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="adts.color.surface.canvas">#FF121922</SolidColorBrush>
+                    <SolidColorBrush x:Key="adts.color.surface.card">#FF1A2432</SolidColorBrush>
+                    <SolidColorBrush x:Key="adts.color.text.primary">#FFF5F8FF</SolidColorBrush>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+            <SolidColorBrush x:Key="adts.color.brand.primary">#FF2F66FF</SolidColorBrush>
+            <x:Double x:Key="adts.spacing.100">8</x:Double>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.Styles>
+        <Style Selector="TextBlock.heading">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="{DynamicResource adts.color.text.primary}" />
+        </Style>
+        <Style Selector="Border.card">
+            <Setter Property="Padding" Value="20" />
+            <Setter Property="Background" Value="{DynamicResource adts.color.surface.card}" />
+        </Style>
+        <Style Selector="Button.primary">
+            <Setter Property="Background" Value="{StaticResource adts.color.brand.primary}" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Padding" Value="14,8" />
+        </Style>
+        <Style Selector="Button.primary:pointerover">
+            <Setter Property="Opacity" Value="0.9" />
+        </Style>
+    </Window.Styles>
+    <Grid Background="{DynamicResource adts.color.surface.canvas}" RowDefinitions="Auto,*">
+        <TextBlock Grid.Row="0" Margin="20,18,20,8" Classes="heading" Text="ADTS Playground on Avalonia 11 + .NET 10" />
+        <Border Grid.Row="1" Classes="card" Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <StackPanel Spacing="{StaticResource adts.spacing.100}">
+                <TextBlock FontSize="16" FontWeight="Medium" Text="Tokens shown here are sourced from the ADTS starter example." />
+                <TextBlock TextWrapping="Wrap" Text="This window validates that theme dictionaries, resources, selectors, pseudo-classes, spacing, and radius tokens all work in a concrete Avalonia 11 app." />
+                <StackPanel Orientation="Horizontal" Spacing="{StaticResource adts.spacing.100}">
+                    <Button Classes="primary" Content="Primary action" />
+                    <ThemeVariantScope RequestedThemeVariant="Dark">
+                        <Border Classes="card" Padding="8">
+                            <TextBlock VerticalAlignment="Center"
+                                       Foreground="{DynamicResource adts.color.text.primary}"
+                                       Text="Dark variant scope preview" />
+                        </Border>
+                    </ThemeVariantScope>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

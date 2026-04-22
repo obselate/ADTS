@@ -1,0 +1,85 @@
+{
+  "$schema": "../adts.schema.json",
+  "adtsVersion": "0.1.0",
+  "metadata": {
+    "name": "ADTS Starter Identity",
+    "description": "Minimal Avalonia 11 token baseline for agents.",
+    "framework": "Avalonia",
+    "frameworkVersionRange": "11.x"
+  },
+  "aliases": {
+    "space.sm": 8,
+    "radius.md": 10
+  },
+  "themes": {
+    "base": {
+      "resources": {
+        "color.surface.canvas": {
+          "$type": "color",
+          "$value": "#FF121922"
+        },
+        "color.surface.card": {
+          "$type": "color",
+          "$value": "#FF1A2432"
+        },
+        "color.text.primary": {
+          "$type": "color",
+          "$value": "#FFF5F8FF"
+        },
+        "color.brand.primary": {
+          "$type": "color",
+          "$value": "#FF2F66FF"
+        },
+        "spacing.100": {
+          "$type": "double",
+          "$value": {
+            "ref": "aliases.space.sm"
+          }
+        },
+        "radius.md": {
+          "$type": "double",
+          "$value": {
+            "ref": "aliases.radius.md"
+          }
+        }
+      },
+      "styles": [
+        {
+          "selector": "TextBlock.heading",
+          "setters": {
+            "FontSize": 24,
+            "FontWeight": "SemiBold",
+            "Foreground": {
+              "ref": "color.text.primary"
+            }
+          }
+        },
+        {
+          "selector": "Button.primary:pointerover",
+          "setters": {
+            "Opacity": 0.9
+          }
+        }
+      ],
+      "controlThemes": {
+        "PrimaryButtonTheme": {
+          "targetType": "Button",
+          "setters": {
+            "Background": {
+              "ref": "color.brand.primary"
+            },
+            "Foreground": "White",
+            "CornerRadius": {
+              "ref": "radius.md"
+            }
+          },
+          "states": {
+            "^:pointerover": {
+              "Opacity": 0.9
+            }
+          }
+        }
+      }
+    }
+  }
+}
