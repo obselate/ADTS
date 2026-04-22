@@ -23,6 +23,17 @@
           <Setter Property="Opacity" Value="0.9" />
         </Style>
       </ControlTheme>
+      <!-- PillTagTheme: basedOnFluent=false -->
+      <ControlTheme x:Key="PillTagTheme" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource adts.color.surface.card}" />
+        <Setter Property="Padding" Value="8,4" />
+        <Setter Property="CornerRadius" Value="14" />
+        <Setter Property="BorderBrush" Value="{DynamicResource adts.color.border.default}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Style Selector="^:pointerover">
+          <Setter Property="Opacity" Value="0.92" />
+        </Style>
+      </ControlTheme>
     </ResourceDictionary>
   </Styles.Resources>
   <Style Selector="TextBlock.heading">
@@ -50,5 +61,11 @@
     <Setter Property="CornerRadius" Value="10" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="BorderBrush" Value="{DynamicResource adts.color.border.default}" />
+  </Style>
+  <Style Selector="Button.primary:pointerover">
+    <Setter Property="Opacity" Value="0.88" />
+  </Style>
+  <Style Selector="Button.primary:pressed">
+    <Setter Property="Opacity" Value="0.74" />
   </Style>
 </Styles>

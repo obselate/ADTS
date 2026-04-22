@@ -2,29 +2,26 @@
   "$schema": "../adts.schema.json",
   "adtsVersion": "0.2.0",
   "metadata": {
-    "name": "ADTS Starter Identity",
-    "description": "High-contrast black/white desktop baseline with 100-900 weighting.",
+    "name": "ADTS Amber Terminal",
+    "description": "Dark terminal-inspired amber palette, explicit states, non-Fluent default.",
     "framework": "Avalonia",
     "frameworkVersionRange": "11.x"
   },
   "tokens": {
     "colors": {
-      "neutral.100": "#FFFFFFFF",
-      "neutral.200": "#FFF2F2F2",
-      "neutral.300": "#FFE6E6E6",
-      "neutral.400": "#FFD9D9D9",
-      "neutral.500": "#FFBFBFBF",
-      "neutral.600": "#FF8C8C8C",
-      "neutral.700": "#FF595959",
-      "neutral.800": "#FF262626",
-      "neutral.900": "#FF000000",
-      "surface.canvas": "{colors.neutral.100}",
-      "surface.card": "{colors.neutral.200}",
-      "text.primary": "{colors.neutral.900}",
-      "text.secondary": "{colors.neutral.700}",
-      "text.inverse": "{colors.neutral.100}",
-      "border.default": "{colors.neutral.400}",
-      "brand.primary": "{colors.neutral.900}"
+      "base.100": "#FFFFF4CC",
+      "base.200": "#FFFFE8A3",
+      "base.400": "#FFE6BE66",
+      "base.600": "#FFB38D2D",
+      "base.800": "#FF2A220F",
+      "base.900": "#FF120E05",
+      "surface.canvas": "{colors.base.900}",
+      "surface.card": "{colors.base.800}",
+      "text.primary": "{colors.base.100}",
+      "text.secondary": "{colors.base.400}",
+      "text.inverse": "{colors.base.900}",
+      "border.default": "{colors.base.600}",
+      "brand.primary": "{colors.base.200}"
     },
     "spacing": {
       "100": "8",
@@ -33,9 +30,9 @@
       "400": "20"
     },
     "rounded": {
-      "sm": "6",
-      "md": "10",
-      "lg": "14"
+      "sm": "4",
+      "md": "8",
+      "lg": "12"
     },
     "typography": {
       "heading": {
@@ -75,37 +72,29 @@
         "cornerRadius": "{rounded.md}"
       },
       "badge.status": {
-        "background": "{colors.neutral.900}",
-        "foreground": "{colors.neutral.100}",
+        "background": "{colors.base.600}",
+        "foreground": "{colors.base.100}",
         "padding": "6,2",
         "cornerRadius": "{rounded.sm}"
       },
       "pill-tag": {
-        "background": "{colors.neutral.200}",
-        "foreground": "{colors.neutral.900}",
+        "background": "{colors.base.800}",
+        "foreground": "{colors.base.100}",
+        "borderBrush": "{colors.base.600}",
         "padding": "8,4",
         "cornerRadius": "{rounded.lg}"
       }
     }
   },
   "avalonia": {
-    "resourcePrefix": "adts",
     "app": {
       "theme": {
-        "base": "Fluent",
-        "requestedVariant": "Default"
+        "base": "Simple",
+        "requestedVariant": "Dark"
       }
     },
+    "resourcePrefix": "adts",
     "resources": {
-      "color.neutral.100": "{colors.neutral.100}",
-      "color.neutral.200": "{colors.neutral.200}",
-      "color.neutral.300": "{colors.neutral.300}",
-      "color.neutral.400": "{colors.neutral.400}",
-      "color.neutral.500": "{colors.neutral.500}",
-      "color.neutral.600": "{colors.neutral.600}",
-      "color.neutral.700": "{colors.neutral.700}",
-      "color.neutral.800": "{colors.neutral.800}",
-      "color.neutral.900": "{colors.neutral.900}",
       "color.surface.canvas": "{colors.surface.canvas}",
       "color.surface.card": "{colors.surface.card}",
       "color.text.primary": "{colors.text.primary}",
@@ -129,30 +118,6 @@
       "typography.weight.700": "700",
       "typography.weight.800": "800",
       "typography.weight.900": "900"
-    },
-    "variants": {
-      "Light": {
-        "resources": {
-          "color.surface.canvas": "#FFFFFFFF",
-          "color.surface.card": "#FFF2F2F2",
-          "color.text.primary": "#FF000000",
-          "color.text.secondary": "#FF595959",
-          "color.text.inverse": "#FFFFFFFF",
-          "color.brand.primary": "#FF000000",
-          "color.border.default": "#FFD9D9D9"
-        }
-      },
-      "Dark": {
-        "resources": {
-          "color.surface.canvas": "#FF000000",
-          "color.surface.card": "#FF1A1A1A",
-          "color.text.primary": "#FFFFFFFF",
-          "color.text.secondary": "#FFD9D9D9",
-          "color.text.inverse": "#FF000000",
-          "color.brand.primary": "#FFFFFFFF",
-          "color.border.default": "#FF595959"
-        }
-      }
     },
     "styles": [
       {
@@ -183,60 +148,6 @@
         }
       },
       {
-        "selector": "TextBlock.weight-100",
-        "setters": {
-          "FontWeight": "100"
-        }
-      },
-      {
-        "selector": "TextBlock.weight-200",
-        "setters": {
-          "FontWeight": "200"
-        }
-      },
-      {
-        "selector": "TextBlock.weight-300",
-        "setters": {
-          "FontWeight": "300"
-        }
-      },
-      {
-        "selector": "TextBlock.weight-400",
-        "setters": {
-          "FontWeight": "400"
-        }
-      },
-      {
-        "selector": "TextBlock.weight-500",
-        "setters": {
-          "FontWeight": "500"
-        }
-      },
-      {
-        "selector": "TextBlock.weight-600",
-        "setters": {
-          "FontWeight": "600"
-        }
-      },
-      {
-        "selector": "TextBlock.weight-700",
-        "setters": {
-          "FontWeight": "700"
-        }
-      },
-      {
-        "selector": "TextBlock.weight-800",
-        "setters": {
-          "FontWeight": "800"
-        }
-      },
-      {
-        "selector": "TextBlock.weight-900",
-        "setters": {
-          "FontWeight": "900"
-        }
-      },
-      {
         "selector": "Border.card",
         "setters": {
           "Padding": "{components.card.default.padding}",
@@ -259,25 +170,17 @@
       {
         "selector": "Button.primary:pointerover",
         "setters": {
-          "Opacity": "0.85"
+          "Opacity": "0.9"
+        }
+      },
+      {
+        "selector": "Button.primary:pressed",
+        "setters": {
+          "Opacity": "0.75"
         }
       }
     ],
     "controlThemes": {
-      "PrimaryButtonTheme": {
-        "targetType": "Button",
-        "fluentOverride": true,
-        "setters": {
-          "Background": "{components.button.primary.background}",
-          "Foreground": "{components.button.primary.foreground}",
-          "CornerRadius": "{components.button.primary.cornerRadius}"
-        },
-        "states": {
-          "^:pointerover": {
-            "Opacity": "0.85"
-          }
-        }
-      },
       "StatusBadgeTheme": {
         "targetType": "Border",
         "xKey": "StatusBadgeTheme",
@@ -288,7 +191,7 @@
         },
         "states": {
           "^:pointerover": {
-            "Opacity": "0.9"
+            "Opacity": "0.92"
           }
         }
       },
@@ -297,6 +200,8 @@
         "xKey": "PillTagTheme",
         "setters": {
           "Background": "{components.pill-tag.background}",
+          "BorderBrush": "{components.pill-tag.borderBrush}",
+          "BorderThickness": "1",
           "Padding": "{components.pill-tag.padding}",
           "CornerRadius": "{components.pill-tag.cornerRadius}"
         },

@@ -1,0 +1,219 @@
+{
+  "$schema": "../adts.schema.json",
+  "adtsVersion": "0.2.0",
+  "metadata": {
+    "name": "Oceanic Glow",
+    "description": "Cool cyan/blue desktop theme with explicit state selectors and custom control themes.",
+    "framework": "Avalonia",
+    "frameworkVersionRange": "11.x"
+  },
+  "tokens": {
+    "colors": {
+      "surface.canvas": "#FF0B1824",
+      "surface.card": "#FF122639",
+      "text.primary": "#FFE9F6FF",
+      "text.secondary": "#FFB5D4EA",
+      "text.inverse": "#FF092233",
+      "border.default": "#FF2E4B62",
+      "brand.primary": "#FF39B8FF",
+      "brand.hover": "#FF6CCBFF",
+      "brand.pressed": "#FF1D95D9",
+      "accent.success": "#FF3DE89D"
+    },
+    "typography": {
+      "heading": {
+        "fontFamily": "Inter",
+        "fontSize": "30",
+        "fontWeight": 800
+      },
+      "subheading": {
+        "fontFamily": "Inter",
+        "fontSize": "19",
+        "fontWeight": 700
+      },
+      "body": {
+        "fontFamily": "Inter",
+        "fontSize": "14",
+        "fontWeight": 400
+      }
+    },
+    "spacing": {
+      "100": "8",
+      "200": "12",
+      "300": "16",
+      "400": "20"
+    },
+    "rounded": {
+      "sm": "6",
+      "md": "12",
+      "lg": "16",
+      "full": "999"
+    },
+    "components": {
+      "button.primary": {
+        "background": "{colors.brand.primary}",
+        "foreground": "{colors.text.inverse}",
+        "borderBrush": "{colors.brand.hover}",
+        "padding": "14,8",
+        "cornerRadius": "{rounded.md}"
+      },
+      "card.default": {
+        "background": "{colors.surface.card}",
+        "borderBrush": "{colors.border.default}",
+        "padding": "20",
+        "cornerRadius": "{rounded.md}"
+      },
+      "badge.status": {
+        "background": "{colors.accent.success}",
+        "foreground": "{colors.text.inverse}",
+        "padding": "7,2",
+        "cornerRadius": "{rounded.full}"
+      },
+      "pill-tag": {
+        "background": "{colors.surface.card}",
+        "foreground": "{colors.text.primary}",
+        "padding": "8,4",
+        "cornerRadius": "{rounded.lg}"
+      }
+    }
+  },
+  "avalonia": {
+    "app": {
+      "theme": {
+        "base": "Simple",
+        "requestedVariant": "Dark"
+      }
+    },
+    "resourcePrefix": "adts",
+    "resources": {
+      "color.surface.canvas": "{colors.surface.canvas}",
+      "color.surface.card": "{colors.surface.card}",
+      "color.text.primary": "{colors.text.primary}",
+      "color.text.secondary": "{colors.text.secondary}",
+      "color.text.inverse": "{colors.text.inverse}",
+      "color.border.default": "{colors.border.default}",
+      "color.brand.primary": "{colors.brand.primary}",
+      "color.brand.hover": "{colors.brand.hover}",
+      "color.brand.pressed": "{colors.brand.pressed}",
+      "color.accent.success": "{colors.accent.success}",
+      "spacing.100": "{spacing.100}",
+      "spacing.200": "{spacing.200}",
+      "spacing.300": "{spacing.300}",
+      "spacing.400": "{spacing.400}",
+      "radius.sm": "{rounded.sm}",
+      "radius.md": "{rounded.md}",
+      "radius.lg": "{rounded.lg}",
+      "radius.full": "{rounded.full}"
+    },
+    "styles": [
+      {
+        "selector": "TextBlock.heading",
+        "setters": {
+          "FontFamily": "{typography.heading.fontFamily}",
+          "FontSize": "{typography.heading.fontSize}",
+          "FontWeight": "{typography.heading.fontWeight}",
+          "Foreground": "{colors.text.primary}"
+        }
+      },
+      {
+        "selector": "TextBlock.subheading",
+        "setters": {
+          "FontFamily": "{typography.subheading.fontFamily}",
+          "FontSize": "{typography.subheading.fontSize}",
+          "FontWeight": "{typography.subheading.fontWeight}",
+          "Foreground": "{colors.text.primary}"
+        }
+      },
+      {
+        "selector": "TextBlock.body-secondary",
+        "setters": {
+          "FontFamily": "{typography.body.fontFamily}",
+          "FontSize": "{typography.body.fontSize}",
+          "FontWeight": "{typography.body.fontWeight}",
+          "Foreground": "{colors.text.secondary}"
+        }
+      },
+      {
+        "selector": "Border.card",
+        "setters": {
+          "Padding": "{components.card.default.padding}",
+          "CornerRadius": "{components.card.default.cornerRadius}",
+          "BorderThickness": "1",
+          "Background": "{components.card.default.background}",
+          "BorderBrush": "{components.card.default.borderBrush}"
+        }
+      },
+      {
+        "selector": "Button.primary",
+        "setters": {
+          "Background": "{components.button.primary.background}",
+          "Foreground": "{components.button.primary.foreground}",
+          "Padding": "{components.button.primary.padding}",
+          "BorderThickness": "1",
+          "BorderBrush": "{components.button.primary.borderBrush}"
+        }
+      },
+      {
+        "selector": "Button.primary:pointerover",
+        "setters": {
+          "Background": "{colors.brand.hover}",
+          "Opacity": "0.96"
+        }
+      },
+      {
+        "selector": "Button.primary:pressed",
+        "setters": {
+          "Background": "{colors.brand.pressed}",
+          "Opacity": "1"
+        }
+      }
+    ],
+    "controlThemes": {
+      "PrimaryButtonTheme": {
+        "targetType": "Button",
+        "basedOnFluent": false,
+        "setters": {
+          "Background": "{components.button.primary.background}",
+          "Foreground": "{components.button.primary.foreground}",
+          "CornerRadius": "{components.button.primary.cornerRadius}"
+        },
+        "states": {
+          "^:pointerover": {
+            "Background": "{colors.brand.hover}"
+          },
+          "^:pressed": {
+            "Background": "{colors.brand.pressed}"
+          }
+        }
+      },
+      "StatusBadgeTheme": {
+        "targetType": "Border",
+        "xKey": "StatusBadgeTheme",
+        "setters": {
+          "Background": "{components.badge.status.background}",
+          "Padding": "{components.badge.status.padding}",
+          "CornerRadius": "{components.badge.status.cornerRadius}"
+        },
+        "states": {
+          "^:pointerover": {
+            "Opacity": "0.9"
+          }
+        }
+      },
+      "PillTagTheme": {
+        "targetType": "Border",
+        "xKey": "PillTagTheme",
+        "setters": {
+          "Background": "{components.pill-tag.background}",
+          "Padding": "{components.pill-tag.padding}",
+          "CornerRadius": "{components.pill-tag.cornerRadius}"
+        },
+        "states": {
+          "^:pointerover": {
+            "BorderThickness": "1"
+          }
+        }
+      }
+    }
+  }
+}

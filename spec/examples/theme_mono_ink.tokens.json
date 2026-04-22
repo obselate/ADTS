@@ -1,0 +1,182 @@
+{
+  "$schema": "../adts.schema.json",
+  "adtsVersion": "0.2.0",
+  "metadata": {
+    "name": "Mono Ink",
+    "description": "High-contrast monochrome editorial theme.",
+    "framework": "Avalonia",
+    "frameworkVersionRange": "11.x"
+  },
+  "tokens": {
+    "colors": {
+      "neutral.100": "#FFFFFFFF",
+      "neutral.200": "#FFF2F2F2",
+      "neutral.400": "#FFD0D0D0",
+      "neutral.700": "#FF4A4A4A",
+      "neutral.900": "#FF000000",
+      "surface.canvas": "{colors.neutral.100}",
+      "surface.card": "{colors.neutral.200}",
+      "text.primary": "{colors.neutral.900}",
+      "text.secondary": "{colors.neutral.700}",
+      "text.inverse": "{colors.neutral.100}",
+      "border.default": "{colors.neutral.400}",
+      "accent.primary": "{colors.neutral.900}"
+    },
+    "typography": {
+      "heading": {
+        "fontFamily": "Inter",
+        "fontSize": "28",
+        "fontWeight": 800
+      },
+      "body": {
+        "fontFamily": "Inter",
+        "fontSize": "14",
+        "fontWeight": 400
+      }
+    },
+    "spacing": {
+      "100": "8",
+      "300": "16",
+      "400": "20"
+    },
+    "rounded": {
+      "sm": "6",
+      "md": "10",
+      "lg": "14"
+    },
+    "components": {
+      "button.primary": {
+        "background": "{colors.accent.primary}",
+        "foreground": "{colors.text.inverse}",
+        "padding": "14,8",
+        "cornerRadius": "{rounded.md}",
+        "borderBrush": "{colors.border.default}"
+      },
+      "card.default": {
+        "background": "{colors.surface.card}",
+        "padding": "20",
+        "cornerRadius": "{rounded.md}",
+        "borderBrush": "{colors.border.default}"
+      },
+      "badge.status": {
+        "background": "{colors.accent.primary}",
+        "foreground": "{colors.text.inverse}",
+        "padding": "6,2",
+        "cornerRadius": "{rounded.sm}"
+      },
+      "pill-tag": {
+        "background": "{colors.surface.card}",
+        "foreground": "{colors.text.primary}",
+        "padding": "8,4",
+        "cornerRadius": "{rounded.lg}",
+        "borderBrush": "{colors.border.default}"
+      }
+    }
+  },
+  "avalonia": {
+    "app": {
+      "theme": {
+        "base": "Simple",
+        "requestedVariant": "Light"
+      }
+    },
+    "resourcePrefix": "adts",
+    "resources": {
+      "color.surface.canvas": "{colors.surface.canvas}",
+      "color.surface.card": "{colors.surface.card}",
+      "color.text.primary": "{colors.text.primary}",
+      "color.text.secondary": "{colors.text.secondary}",
+      "color.text.inverse": "{colors.text.inverse}",
+      "color.border.default": "{colors.border.default}",
+      "color.accent.primary": "{colors.accent.primary}",
+      "spacing.100": "{spacing.100}",
+      "spacing.300": "{spacing.300}",
+      "spacing.400": "{spacing.400}",
+      "radius.md": "{rounded.md}"
+    },
+    "styles": [
+      {
+        "selector": "TextBlock.heading",
+        "setters": {
+          "FontFamily": "{typography.heading.fontFamily}",
+          "FontSize": "{typography.heading.fontSize}",
+          "FontWeight": "{typography.heading.fontWeight}",
+          "Foreground": "{colors.text.primary}"
+        }
+      },
+      {
+        "selector": "TextBlock.body-secondary",
+        "setters": {
+          "FontFamily": "{typography.body.fontFamily}",
+          "FontSize": "{typography.body.fontSize}",
+          "Foreground": "{colors.text.secondary}"
+        }
+      },
+      {
+        "selector": "Border.card",
+        "setters": {
+          "Padding": "{components.card.default.padding}",
+          "CornerRadius": "{components.card.default.cornerRadius}",
+          "BorderThickness": "1",
+          "Background": "{components.card.default.background}",
+          "BorderBrush": "{components.card.default.borderBrush}"
+        }
+      },
+      {
+        "selector": "Button.primary",
+        "setters": {
+          "Background": "{components.button.primary.background}",
+          "Foreground": "{components.button.primary.foreground}",
+          "Padding": "{components.button.primary.padding}",
+          "CornerRadius": "{components.button.primary.cornerRadius}",
+          "BorderThickness": "1",
+          "BorderBrush": "{components.button.primary.borderBrush}"
+        }
+      },
+      {
+        "selector": "Button.primary:pointerover",
+        "setters": {
+          "Opacity": "0.88"
+        }
+      },
+      {
+        "selector": "Button.primary:pressed",
+        "setters": {
+          "Opacity": "0.74"
+        }
+      }
+    ],
+    "controlThemes": {
+      "StatusBadgeTheme": {
+        "targetType": "Border",
+        "xKey": "StatusBadgeTheme",
+        "setters": {
+          "Background": "{components.badge.status.background}",
+          "Padding": "{components.badge.status.padding}",
+          "CornerRadius": "{components.badge.status.cornerRadius}"
+        },
+        "states": {
+          "^:pointerover": {
+            "Opacity": "0.9"
+          }
+        }
+      },
+      "PillTagTheme": {
+        "targetType": "Border",
+        "xKey": "PillTagTheme",
+        "setters": {
+          "Background": "{components.pill-tag.background}",
+          "Padding": "{components.pill-tag.padding}",
+          "CornerRadius": "{components.pill-tag.cornerRadius}",
+          "BorderBrush": "{components.pill-tag.borderBrush}",
+          "BorderThickness": "1"
+        },
+        "states": {
+          "^:pointerover": {
+            "Opacity": "0.92"
+          }
+        }
+      }
+    }
+  }
+}

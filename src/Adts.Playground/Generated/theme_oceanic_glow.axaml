@@ -1,0 +1,96 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Styles.Resources>
+    <ResourceDictionary>
+      <SolidColorBrush x:Key="adts.color.surface.canvas">#FF0B1824</SolidColorBrush>
+      <SolidColorBrush x:Key="adts.color.surface.card">#FF122639</SolidColorBrush>
+      <SolidColorBrush x:Key="adts.color.text.primary">#FFE9F6FF</SolidColorBrush>
+      <SolidColorBrush x:Key="adts.color.text.secondary">#FFB5D4EA</SolidColorBrush>
+      <SolidColorBrush x:Key="adts.color.text.inverse">#FF092233</SolidColorBrush>
+      <SolidColorBrush x:Key="adts.color.border.default">#FF2E4B62</SolidColorBrush>
+      <SolidColorBrush x:Key="adts.color.brand.primary">#FF39B8FF</SolidColorBrush>
+      <SolidColorBrush x:Key="adts.color.brand.hover">#FF6CCBFF</SolidColorBrush>
+      <SolidColorBrush x:Key="adts.color.brand.pressed">#FF1D95D9</SolidColorBrush>
+      <SolidColorBrush x:Key="adts.color.accent.success">#FF3DE89D</SolidColorBrush>
+      <x:Double x:Key="adts.spacing.100">8</x:Double>
+      <x:Double x:Key="adts.spacing.200">12</x:Double>
+      <x:Double x:Key="adts.spacing.300">16</x:Double>
+      <x:Double x:Key="adts.spacing.400">20</x:Double>
+      <x:Double x:Key="adts.radius.sm">6</x:Double>
+      <x:Double x:Key="adts.radius.md">12</x:Double>
+      <x:Double x:Key="adts.radius.lg">16</x:Double>
+      <x:Double x:Key="adts.radius.full">999</x:Double>
+      <!-- Generated control themes -->
+      <!-- PrimaryButtonTheme: basedOnFluent=false -->
+      <ControlTheme x:Key="PrimaryButtonTheme" TargetType="Button">
+        <Setter Property="Background" Value="{DynamicResource adts.color.brand.primary}" />
+        <Setter Property="Foreground" Value="{DynamicResource adts.color.text.inverse}" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Style Selector="^:pointerover">
+          <Setter Property="Background" Value="{DynamicResource adts.color.brand.hover}" />
+        </Style>
+        <Style Selector="^:pressed">
+          <Setter Property="Background" Value="{DynamicResource adts.color.brand.pressed}" />
+        </Style>
+      </ControlTheme>
+      <!-- StatusBadgeTheme: basedOnFluent=false -->
+      <ControlTheme x:Key="StatusBadgeTheme" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource adts.color.accent.success}" />
+        <Setter Property="Padding" Value="7,2" />
+        <Setter Property="CornerRadius" Value="999" />
+        <Style Selector="^:pointerover">
+          <Setter Property="Opacity" Value="0.9" />
+        </Style>
+      </ControlTheme>
+      <!-- PillTagTheme: basedOnFluent=false -->
+      <ControlTheme x:Key="PillTagTheme" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource adts.color.surface.card}" />
+        <Setter Property="Padding" Value="8,4" />
+        <Setter Property="CornerRadius" Value="16" />
+        <Style Selector="^:pointerover">
+          <Setter Property="BorderThickness" Value="1" />
+        </Style>
+      </ControlTheme>
+    </ResourceDictionary>
+  </Styles.Resources>
+  <Style Selector="TextBlock.heading">
+    <Setter Property="FontFamily" Value="Inter" />
+    <Setter Property="FontSize" Value="30" />
+    <Setter Property="FontWeight" Value="800" />
+    <Setter Property="Foreground" Value="{DynamicResource adts.color.text.primary}" />
+  </Style>
+  <Style Selector="TextBlock.subheading">
+    <Setter Property="FontFamily" Value="Inter" />
+    <Setter Property="FontSize" Value="19" />
+    <Setter Property="FontWeight" Value="700" />
+    <Setter Property="Foreground" Value="{DynamicResource adts.color.text.primary}" />
+  </Style>
+  <Style Selector="TextBlock.body-secondary">
+    <Setter Property="FontFamily" Value="Inter" />
+    <Setter Property="FontSize" Value="14" />
+    <Setter Property="FontWeight" Value="400" />
+    <Setter Property="Foreground" Value="{DynamicResource adts.color.text.secondary}" />
+  </Style>
+  <Style Selector="Border.card">
+    <Setter Property="Padding" Value="20" />
+    <Setter Property="CornerRadius" Value="12" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Background" Value="{DynamicResource adts.color.surface.card}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource adts.color.border.default}" />
+  </Style>
+  <Style Selector="Button.primary">
+    <Setter Property="Background" Value="{DynamicResource adts.color.brand.primary}" />
+    <Setter Property="Foreground" Value="{DynamicResource adts.color.text.inverse}" />
+    <Setter Property="Padding" Value="14,8" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="BorderBrush" Value="{DynamicResource adts.color.brand.hover}" />
+  </Style>
+  <Style Selector="Button.primary:pointerover">
+    <Setter Property="Background" Value="{DynamicResource adts.color.brand.hover}" />
+    <Setter Property="Opacity" Value="0.96" />
+  </Style>
+  <Style Selector="Button.primary:pressed">
+    <Setter Property="Background" Value="{DynamicResource adts.color.brand.pressed}" />
+    <Setter Property="Opacity" Value="1" />
+  </Style>
+</Styles>
