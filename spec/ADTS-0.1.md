@@ -1,4 +1,4 @@
-# ADTS 0.1 (Draft)
+# ADTS 0.2 (Draft)
 
 Avalonia Design Token Schema (ADTS) defines a machine-friendly token contract for generating consistent Avalonia 11 XAML styles and themes.
 
@@ -21,32 +21,37 @@ Avalonia Design Token Schema (ADTS) defines a machine-friendly token contract fo
 Top-level object:
 
 - `$schema`: JSON schema URI.
-- `adtsVersion`: ADTS spec version (for this draft, `0.1.0`).
+- `adtsVersion`: ADTS spec version (for this draft, `0.2.0`).
 - `metadata`: optional author/project information.
-- `aliases`: reusable global aliases (e.g. spacing values).
-- `themes`: one or more named theme payloads.
+- `tokens`: platform-neutral design token domains (colors, typography, spacing, rounded).
+- `avalonia`: platform projection for resource/style/theme mapping.
 
-Each theme contains:
+`tokens` contains:
 
-- `resources`: typed resource tokens (`color`, `brush`, `double`, `thickness`, `string`).
+- `colors`: semantic color tokens.
+- `typography`: named typography objects (`fontFamily`, `fontSize`, `fontWeight`, `lineHeight`, `letterSpacing`).
+- `spacing`: spacing scale values.
+- `rounded`: corner radius scale values.
+
+`avalonia` contains:
+
+- `resources`: token -> Avalonia resource key projection.
+- `variants` (optional): `Light`/`Dark` resource key overrides.
 - `styles`: selector-based setters for Avalonia styles.
-- `controlThemes`: named control themes with setter and optional state blocks.
-- `variants` (optional): variant-specific `resources` for `Light` and/or `Dark`.
+- `controlThemes`: named control themes with optional fluent behavior hints.
 
 ## Avalonia 11 Mapping Rules
 
 ### 1) Resources
 
-- `color` token -> `<Color x:Key="...">#RRGGBB</Color>`
-- `brush` token -> `<SolidColorBrush x:Key="...">` or reference another token.
-- `double` token -> scalar values for font sizes, radii, etc.
-- `thickness` token -> `Thickness` XAML string form (`left,top,right,bottom`).
-
-References use `{ref: "token.path"}` and should be emitted as `DynamicResource` for theme-dependent values.
+- `avalonia.resources` maps token paths to concrete resource keys (`adts.*`).
+- color-like resources should emit brushes in `<Styles.Resources>`.
+- numeric resources should emit `<x:Double ...>`.
+- references use `{ref: "tokens...."}`.
 
 ### 2) Theme Variants (Optional)
 
-`themes.<name>.variants.Light|Dark` maps to:
+`avalonia.variants.Light|Dark.resources` maps to:
 
 - `<ResourceDictionary.ThemeDictionaries>`
   - `<ResourceDictionary x:Key="Light">...</ResourceDictionary>`
@@ -56,7 +61,7 @@ This follows Avalonia 11 theme-variant behavior.
 
 ### 3) Styles
 
-`styles` entries use Avalonia selector syntax (`Button.primary:pointerover`, etc.) and setter dictionaries.
+`avalonia.styles` entries use Avalonia selector syntax (`Button.primary:pointerover`, etc.) and setter dictionaries.
 
 Each setter maps to:
 
@@ -65,12 +70,13 @@ Each setter maps to:
 
 ### 4) Control Themes
 
-`controlThemes` entries map to `<ControlTheme>` resources:
+`avalonia.controlThemes` entries map to `<ControlTheme>` resources:
 
 - Key in `controlThemes` object -> `x:Key`.
 - `targetType` -> `TargetType`.
 - `setters` -> `<Setter .../>`.
 - Optional `states` object where keys are nested selectors (for example `^:pointerover`) and values are setter maps.
+- Optional `baseFluent` indicates the generated theme should keep Fluent defaults and overlay targeted setters/states.
 
 ## Authoring Constraints for Agents
 
@@ -81,7 +87,7 @@ Each setter maps to:
 
 ## Example Workflow
 
-1. Author `starter.tokens.json`.
+1. Author `starter.tokens.json` with domain tokens and Avalonia mapping.
 2. Validate against `adts.schema.json`.
 3. Transform into:
    - `App.axaml` resources + merged dictionaries.

@@ -1,14 +1,15 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://adts.dev/schema/adts-0.1.schema.json",
-  "title": "ADTS 0.1 (Avalonia 11)",
-  "description": "Avalonia Design Token Schema for Avalonia UI v11.x.",
+  "$id": "https://adts.dev/schema/adts-0.2.schema.json",
+  "title": "ADTS 0.2 (Avalonia 11)",
+  "description": "Avalonia Design Token Schema with domain tokens and Avalonia projection mappings.",
   "type": "object",
   "required": [
     "$schema",
     "adtsVersion",
     "metadata",
-    "themes"
+    "tokens",
+    "avalonia"
   ],
   "additionalProperties": false,
   "properties": {
@@ -17,7 +18,7 @@
     },
     "adtsVersion": {
       "type": "string",
-      "const": "0.1.0"
+      "const": "0.2.0"
     },
     "metadata": {
       "type": "object",
@@ -52,35 +53,144 @@
         }
       }
     },
-    "aliases": {
+    "tokens": {
       "type": "object",
-      "additionalProperties": {
-        "$ref": "#/$defs/valueOrRef"
+      "required": [
+        "colors",
+        "typography",
+        "spacing",
+        "rounded"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "colors": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "$ref": "#/$defs/colorOrRef"
+          }
+        },
+        "typography": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "$ref": "#/$defs/typographyToken"
+          }
+        },
+        "spacing": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "$ref": "#/$defs/literalOrTokenRef"
+          }
+        },
+        "rounded": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "$ref": "#/$defs/literalOrTokenRef"
+          }
+        },
+        "elevation": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/literalOrTokenRef"
+          }
+        }
       }
     },
-    "themes": {
+    "avalonia": {
       "type": "object",
-      "minProperties": 1,
-      "additionalProperties": {
-        "$ref": "#/$defs/themeDefinition"
+      "required": [
+        "resources",
+        "styles"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "app": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "theme": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "base": {
+                  "type": "string",
+                  "enum": [
+                    "Fluent",
+                    "Simple"
+                  ]
+                },
+                "requestedVariant": {
+                  "type": "string",
+                  "enum": [
+                    "Default",
+                    "Light",
+                    "Dark"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "resources": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "$ref": "#/$defs/literalOrTokenRef"
+          }
+        },
+        "variants": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "Light": {
+              "$ref": "#/$defs/variantDefinition"
+            },
+            "Dark": {
+              "$ref": "#/$defs/variantDefinition"
+            },
+            "Default": {
+              "$ref": "#/$defs/variantDefinition"
+            }
+          }
+        },
+        "styles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/styleDefinition"
+          }
+        },
+        "controlThemes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/controlThemeDefinition"
+          }
+        }
       }
     }
   },
   "$defs": {
-    "reference": {
-      "type": "object",
-      "required": [
-        "ref"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "ref": {
-          "type": "string",
-          "pattern": "^[a-zA-Z][a-zA-Z0-9._-]*$"
-        }
-      }
+    "tokenReference": {
+      "type": "string",
+      "pattern": "^\\{tokens\\.[^}]+\\}$"
     },
-    "valueOrRef": {
+    "colorHex": {
+      "type": "string",
+      "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$"
+    },
+    "colorOrRef": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/colorHex"
+        },
+        {
+          "$ref": "#/$defs/tokenReference"
+        }
+      ]
+    },
+    "literalOrTokenRef": {
       "oneOf": [
         {
           "type": "string"
@@ -92,33 +202,37 @@
           "type": "integer"
         },
         {
-          "$ref": "#/$defs/reference"
+          "type": "boolean"
+        },
+        {
+          "$ref": "#/$defs/tokenReference"
         }
       ]
     },
-    "typedToken": {
+    "typographyToken": {
       "type": "object",
       "required": [
-        "$type",
-        "$value"
+        "fontFamily",
+        "fontSize",
+        "fontWeight"
       ],
       "additionalProperties": false,
       "properties": {
-        "$type": {
+        "fontFamily": {
           "type": "string",
-          "enum": [
-            "color",
-            "brush",
-            "double",
-            "thickness",
-            "string"
-          ]
+          "minLength": 1
         },
-        "$value": {
-          "$ref": "#/$defs/valueOrRef"
+        "fontSize": {
+          "$ref": "#/$defs/literalOrTokenRef"
         },
-        "$description": {
-          "type": "string"
+        "fontWeight": {
+          "$ref": "#/$defs/literalOrTokenRef"
+        },
+        "lineHeight": {
+          "$ref": "#/$defs/literalOrTokenRef"
+        },
+        "letterSpacing": {
+          "$ref": "#/$defs/literalOrTokenRef"
         }
       }
     },
@@ -138,7 +252,23 @@
           "type": "object",
           "minProperties": 1,
           "additionalProperties": {
-            "$ref": "#/$defs/valueOrRef"
+            "$ref": "#/$defs/literalOrTokenRef"
+          }
+        }
+      }
+    },
+    "variantDefinition": {
+      "type": "object",
+      "required": [
+        "resources"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "resources": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "$ref": "#/$defs/literalOrTokenRef"
           }
         }
       }
@@ -155,11 +285,19 @@
           "type": "string",
           "minLength": 1
         },
+        "xKey": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fluentOverride": {
+          "type": "boolean",
+          "description": "If true and xKey is omitted, generator should emit x:Key=\"{x:Type <targetType>}\"."
+        },
         "setters": {
           "type": "object",
           "minProperties": 1,
           "additionalProperties": {
-            "$ref": "#/$defs/valueOrRef"
+            "$ref": "#/$defs/literalOrTokenRef"
           }
         },
         "states": {
@@ -168,59 +306,8 @@
             "type": "object",
             "minProperties": 1,
             "additionalProperties": {
-              "$ref": "#/$defs/valueOrRef"
+              "$ref": "#/$defs/literalOrTokenRef"
             }
-          }
-        }
-      }
-    },
-    "themeDefinition": {
-      "type": "object",
-      "required": [
-        "resources"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "resources": {
-          "type": "object",
-          "minProperties": 1,
-          "additionalProperties": {
-            "$ref": "#/$defs/typedToken"
-          }
-        },
-        "variants": {
-          "type": "object",
-          "minProperties": 1,
-          "additionalProperties": {
-            "$ref": "#/$defs/themeVariantDefinition"
-          }
-        },
-        "styles": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/styleDefinition"
-          }
-        },
-        "controlThemes": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/$defs/controlThemeDefinition"
-          }
-        }
-      }
-    },
-    "themeVariantDefinition": {
-      "type": "object",
-      "required": [
-        "resources"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "resources": {
-          "type": "object",
-          "minProperties": 1,
-          "additionalProperties": {
-            "$ref": "#/$defs/typedToken"
           }
         }
       }

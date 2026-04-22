@@ -1,350 +1,266 @@
 {
   "$schema": "../adts.schema.json",
-  "adtsVersion": "0.1.0",
+  "adtsVersion": "0.2.0",
   "metadata": {
     "name": "ADTS Starter Identity",
-    "description": "High-contrast black/white baseline with 100-900 weighting.",
+    "description": "High-contrast black/white desktop baseline with 100-900 weighting.",
     "framework": "Avalonia",
     "frameworkVersionRange": "11.x"
   },
-  "aliases": {
-    "space.sm": 8,
-    "radius.md": 10
+  "tokens": {
+    "colors": {
+      "neutral.100": "#FFFFFFFF",
+      "neutral.200": "#FFF2F2F2",
+      "neutral.300": "#FFE6E6E6",
+      "neutral.400": "#FFD9D9D9",
+      "neutral.500": "#FFBFBFBF",
+      "neutral.600": "#FF8C8C8C",
+      "neutral.700": "#FF595959",
+      "neutral.800": "#FF262626",
+      "neutral.900": "#FF000000",
+      "surface.canvas": "{colors.neutral.100}",
+      "surface.card": "{colors.neutral.200}",
+      "text.primary": "{colors.neutral.900}",
+      "text.secondary": "{colors.neutral.700}",
+      "text.inverse": "{colors.neutral.100}",
+      "border.default": "{colors.neutral.400}",
+      "brand.primary": "{colors.neutral.900}"
+    },
+    "spacing": {
+      "100": "8",
+      "200": "12",
+      "300": "16",
+      "400": "20"
+    },
+    "rounded": {
+      "sm": "6",
+      "md": "10",
+      "lg": "14"
+    },
+    "typography": {
+      "heading": {
+        "fontFamily": "Inter",
+        "fontSize": "28",
+        "fontWeight": 800,
+        "lineHeight": "34",
+        "letterSpacing": "0"
+      },
+      "subheading": {
+        "fontFamily": "Inter",
+        "fontSize": "18",
+        "fontWeight": 700,
+        "lineHeight": "24",
+        "letterSpacing": "0"
+      },
+      "body": {
+        "fontFamily": "Inter",
+        "fontSize": "14",
+        "fontWeight": 400,
+        "lineHeight": "20",
+        "letterSpacing": "0"
+      }
+    },
+    "components": {
+      "button.primary": {
+        "background": "{colors.brand.primary}",
+        "foreground": "{colors.text.inverse}",
+        "borderBrush": "{colors.border.default}",
+        "padding": "14,8",
+        "cornerRadius": "{rounded.md}"
+      },
+      "card.default": {
+        "background": "{colors.surface.card}",
+        "borderBrush": "{colors.border.default}",
+        "padding": "20",
+        "cornerRadius": "{rounded.md}"
+      }
+    }
   },
-  "themes": {
-    "base": {
-      "resources": {
-        "color.neutral.100": {
-          "$type": "color",
-          "$value": "#FFFFFFFF"
-        },
-        "color.neutral.200": {
-          "$type": "color",
-          "$value": "#FFF2F2F2"
-        },
-        "color.neutral.300": {
-          "$type": "color",
-          "$value": "#FFE6E6E6"
-        },
-        "color.neutral.400": {
-          "$type": "color",
-          "$value": "#FFD9D9D9"
-        },
-        "color.neutral.500": {
-          "$type": "color",
-          "$value": "#FFBFBFBF"
-        },
-        "color.neutral.600": {
-          "$type": "color",
-          "$value": "#FF8C8C8C"
-        },
-        "color.neutral.700": {
-          "$type": "color",
-          "$value": "#FF595959"
-        },
-        "color.neutral.800": {
-          "$type": "color",
-          "$value": "#FF262626"
-        },
-        "color.neutral.900": {
-          "$type": "color",
-          "$value": "#FF000000"
-        },
-        "color.surface.canvas": {
-          "$type": "color",
-          "$value": {
-            "ref": "color.neutral.100"
-          }
-        },
-        "color.surface.card": {
-          "$type": "color",
-          "$value": {
-            "ref": "color.neutral.200"
-          }
-        },
-        "color.text.primary": {
-          "$type": "color",
-          "$value": {
-            "ref": "color.neutral.900"
-          }
-        },
-        "color.text.secondary": {
-          "$type": "color",
-          "$value": {
-            "ref": "color.neutral.700"
-          }
-        },
-        "color.text.inverse": {
-          "$type": "color",
-          "$value": {
-            "ref": "color.neutral.100"
-          }
-        },
-        "color.border.default": {
-          "$type": "color",
-          "$value": {
-            "ref": "color.neutral.400"
-          }
-        },
-        "color.brand.primary": {
-          "$type": "color",
-          "$value": {
-            "ref": "color.neutral.900"
-          }
-        },
-        "spacing.100": {
-          "$type": "double",
-          "$value": {
-            "ref": "aliases.space.sm"
-          }
-        },
-        "radius.md": {
-          "$type": "double",
-          "$value": {
-            "ref": "aliases.radius.md"
-          }
-        },
-        "typography.weight.100": {
-          "$type": "double",
-          "$value": 100
-        },
-        "typography.weight.200": {
-          "$type": "double",
-          "$value": 200
-        },
-        "typography.weight.300": {
-          "$type": "double",
-          "$value": 300
-        },
-        "typography.weight.400": {
-          "$type": "double",
-          "$value": 400
-        },
-        "typography.weight.500": {
-          "$type": "double",
-          "$value": 500
-        },
-        "typography.weight.600": {
-          "$type": "double",
-          "$value": 600
-        },
-        "typography.weight.700": {
-          "$type": "double",
-          "$value": 700
-        },
-        "typography.weight.800": {
-          "$type": "double",
-          "$value": 800
-        },
-        "typography.weight.900": {
-          "$type": "double",
-          "$value": 900
+  "avalonia": {
+    "resourcePrefix": "adts",
+    "theme": {
+      "baseTheme": "Fluent",
+      "includeDefaults": true
+    },
+    "resources": {
+      "color.neutral.100": "{colors.neutral.100}",
+      "color.neutral.200": "{colors.neutral.200}",
+      "color.neutral.300": "{colors.neutral.300}",
+      "color.neutral.400": "{colors.neutral.400}",
+      "color.neutral.500": "{colors.neutral.500}",
+      "color.neutral.600": "{colors.neutral.600}",
+      "color.neutral.700": "{colors.neutral.700}",
+      "color.neutral.800": "{colors.neutral.800}",
+      "color.neutral.900": "{colors.neutral.900}",
+      "color.surface.canvas": "{colors.surface.canvas}",
+      "color.surface.card": "{colors.surface.card}",
+      "color.text.primary": "{colors.text.primary}",
+      "color.text.secondary": "{colors.text.secondary}",
+      "color.text.inverse": "{colors.text.inverse}",
+      "color.border.default": "{colors.border.default}",
+      "color.brand.primary": "{colors.brand.primary}",
+      "spacing.100": "{spacing.100}",
+      "spacing.200": "{spacing.200}",
+      "spacing.300": "{spacing.300}",
+      "spacing.400": "{spacing.400}",
+      "radius.sm": "{rounded.sm}",
+      "radius.md": "{rounded.md}",
+      "radius.lg": "{rounded.lg}",
+      "typography.weight.100": "100",
+      "typography.weight.200": "200",
+      "typography.weight.300": "300",
+      "typography.weight.400": "400",
+      "typography.weight.500": "500",
+      "typography.weight.600": "600",
+      "typography.weight.700": "700",
+      "typography.weight.800": "800",
+      "typography.weight.900": "900"
+    },
+    "variants": {
+      "Light": {
+        "resources": {
+          "color.surface.canvas": "#FFFFFFFF",
+          "color.surface.card": "#FFF2F2F2",
+          "color.text.primary": "#FF000000",
+          "color.text.secondary": "#FF595959",
+          "color.text.inverse": "#FFFFFFFF",
+          "color.brand.primary": "#FF000000",
+          "color.border.default": "#FFD9D9D9"
         }
       },
-      "variants": {
-        "Light": {
-          "resources": {
-            "color.surface.canvas": {
-              "$type": "color",
-              "$value": "#FFFFFFFF"
-            },
-            "color.surface.card": {
-              "$type": "color",
-              "$value": "#FFF2F2F2"
-            },
-            "color.text.primary": {
-              "$type": "color",
-              "$value": "#FF000000"
-            },
-            "color.text.secondary": {
-              "$type": "color",
-              "$value": "#FF595959"
-            },
-            "color.text.inverse": {
-              "$type": "color",
-              "$value": "#FFFFFFFF"
-            },
-            "color.brand.primary": {
-              "$type": "color",
-              "$value": "#FF000000"
-            },
-            "color.border.default": {
-              "$type": "color",
-              "$value": "#FFD9D9D9"
-            }
-          }
-        },
-        "Dark": {
-          "resources": {
-            "color.surface.canvas": {
-              "$type": "color",
-              "$value": "#FF000000"
-            },
-            "color.surface.card": {
-              "$type": "color",
-              "$value": "#FF1A1A1A"
-            },
-            "color.text.primary": {
-              "$type": "color",
-              "$value": "#FFFFFFFF"
-            },
-            "color.text.secondary": {
-              "$type": "color",
-              "$value": "#FFD9D9D9"
-            },
-            "color.text.inverse": {
-              "$type": "color",
-              "$value": "#FF000000"
-            },
-            "color.brand.primary": {
-              "$type": "color",
-              "$value": "#FFFFFFFF"
-            },
-            "color.border.default": {
-              "$type": "color",
-              "$value": "#FF595959"
-            }
-          }
+      "Dark": {
+        "resources": {
+          "color.surface.canvas": "#FF000000",
+          "color.surface.card": "#FF1A1A1A",
+          "color.text.primary": "#FFFFFFFF",
+          "color.text.secondary": "#FFD9D9D9",
+          "color.text.inverse": "#FF000000",
+          "color.brand.primary": "#FFFFFFFF",
+          "color.border.default": "#FF595959"
+        }
+      }
+    },
+    "styles": [
+      {
+        "selector": "TextBlock.heading",
+        "setters": {
+          "FontFamily": "{typography.heading.fontFamily}",
+          "FontSize": "{typography.heading.fontSize}",
+          "FontWeight": "{typography.heading.fontWeight}",
+          "Foreground": "{colors.text.primary}"
         }
       },
-      "styles": [
-        {
-          "selector": "TextBlock.heading",
-          "setters": {
-            "FontSize": 28,
-            "FontWeight": 800,
-            "Foreground": {
-              "ref": "color.text.primary"
-            }
-          }
-        },
-        {
-          "selector": "TextBlock.subheading",
-          "setters": {
-            "FontSize": 18,
-            "FontWeight": 700,
-            "Foreground": {
-              "ref": "color.text.primary"
-            }
-          }
-        },
-        {
-          "selector": "TextBlock.body-secondary",
-          "setters": {
-            "FontSize": 14,
-            "FontWeight": 400,
-            "Foreground": {
-              "ref": "color.text.secondary"
-            }
-          }
-        },
-        {
-          "selector": "TextBlock.weight-100",
-          "setters": {
-            "FontWeight": 100
-          }
-        },
-        {
-          "selector": "TextBlock.weight-200",
-          "setters": {
-            "FontWeight": 200
-          }
-        },
-        {
-          "selector": "TextBlock.weight-300",
-          "setters": {
-            "FontWeight": 300
-          }
-        },
-        {
-          "selector": "TextBlock.weight-400",
-          "setters": {
-            "FontWeight": 400
-          }
-        },
-        {
-          "selector": "TextBlock.weight-500",
-          "setters": {
-            "FontWeight": 500
-          }
-        },
-        {
-          "selector": "TextBlock.weight-600",
-          "setters": {
-            "FontWeight": 600
-          }
-        },
-        {
-          "selector": "TextBlock.weight-700",
-          "setters": {
-            "FontWeight": 700
-          }
-        },
-        {
-          "selector": "TextBlock.weight-800",
-          "setters": {
-            "FontWeight": 800
-          }
-        },
-        {
-          "selector": "TextBlock.weight-900",
-          "setters": {
-            "FontWeight": 900
-          }
-        },
-        {
-          "selector": "Border.card",
-          "setters": {
-            "Padding": "20",
-            "CornerRadius": "10",
-            "BorderThickness": "1",
-            "Background": {
-              "ref": "color.surface.card"
-            },
-            "BorderBrush": {
-              "ref": "color.border.default"
-            }
-          }
-        },
-        {
-          "selector": "Button.primary",
-          "setters": {
-            "Background": {
-              "ref": "color.brand.primary"
-            },
-            "Foreground": {
-              "ref": "color.text.inverse"
-            },
-            "Padding": "14,8",
-            "BorderThickness": "1",
-            "BorderBrush": {
-              "ref": "color.border.default"
-            }
-          }
-        },
-        {
-          "selector": "Button.primary:pointerover",
-          "setters": {
-            "Opacity": 0.85
-          }
+      {
+        "selector": "TextBlock.subheading",
+        "setters": {
+          "FontFamily": "{typography.subheading.fontFamily}",
+          "FontSize": "{typography.subheading.fontSize}",
+          "FontWeight": "{typography.subheading.fontWeight}",
+          "Foreground": "{colors.text.primary}"
         }
-      ],
-      "controlThemes": {
-        "PrimaryButtonTheme": {
-          "targetType": "Button",
-          "setters": {
-            "Background": {
-              "ref": "color.brand.primary"
-            },
-            "Foreground": {
-              "ref": "color.text.inverse"
-            },
-            "CornerRadius": "10"
-          },
-          "states": {
-            "^:pointerover": {
-              "Opacity": 0.85
-            }
+      },
+      {
+        "selector": "TextBlock.body-secondary",
+        "setters": {
+          "FontFamily": "{typography.body.fontFamily}",
+          "FontSize": "{typography.body.fontSize}",
+          "FontWeight": "{typography.body.fontWeight}",
+          "Foreground": "{colors.text.secondary}"
+        }
+      },
+      {
+        "selector": "TextBlock.weight-100",
+        "setters": {
+          "FontWeight": "100"
+        }
+      },
+      {
+        "selector": "TextBlock.weight-200",
+        "setters": {
+          "FontWeight": "200"
+        }
+      },
+      {
+        "selector": "TextBlock.weight-300",
+        "setters": {
+          "FontWeight": "300"
+        }
+      },
+      {
+        "selector": "TextBlock.weight-400",
+        "setters": {
+          "FontWeight": "400"
+        }
+      },
+      {
+        "selector": "TextBlock.weight-500",
+        "setters": {
+          "FontWeight": "500"
+        }
+      },
+      {
+        "selector": "TextBlock.weight-600",
+        "setters": {
+          "FontWeight": "600"
+        }
+      },
+      {
+        "selector": "TextBlock.weight-700",
+        "setters": {
+          "FontWeight": "700"
+        }
+      },
+      {
+        "selector": "TextBlock.weight-800",
+        "setters": {
+          "FontWeight": "800"
+        }
+      },
+      {
+        "selector": "TextBlock.weight-900",
+        "setters": {
+          "FontWeight": "900"
+        }
+      },
+      {
+        "selector": "Border.card",
+        "setters": {
+          "Padding": "{components.card.default.padding}",
+          "CornerRadius": "{components.card.default.cornerRadius}",
+          "BorderThickness": "1",
+          "Background": "{components.card.default.background}",
+          "BorderBrush": "{components.card.default.borderBrush}"
+        }
+      },
+      {
+        "selector": "Button.primary",
+        "setters": {
+          "Background": "{components.button.primary.background}",
+          "Foreground": "{components.button.primary.foreground}",
+          "Padding": "{components.button.primary.padding}",
+          "BorderThickness": "1",
+          "BorderBrush": "{components.button.primary.borderBrush}"
+        }
+      },
+      {
+        "selector": "Button.primary:pointerover",
+        "setters": {
+          "Opacity": "0.85"
+        }
+      }
+    ],
+    "controlThemes": {
+      "PrimaryButtonTheme": {
+        "targetType": "Button",
+        "basedOnFluent": true,
+        "setters": {
+          "Background": "{components.button.primary.background}",
+          "Foreground": "{components.button.primary.foreground}",
+          "CornerRadius": "{components.button.primary.cornerRadius}"
+        },
+        "states": {
+          "^:pointerover": {
+            "Opacity": "0.85"
           }
         }
       }
