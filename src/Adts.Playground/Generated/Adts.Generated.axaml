@@ -1,0 +1,30 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Styles.Resources>
+    <ResourceDictionary>
+      <SolidColorBrush x:Key="adts.color.surface.canvas">#FF121922</SolidColorBrush>
+      <SolidColorBrush x:Key="adts.color.surface.card">#FF1A2432</SolidColorBrush>
+      <SolidColorBrush x:Key="adts.color.text.primary">#FFF5F8FF</SolidColorBrush>
+      <SolidColorBrush x:Key="adts.color.brand.primary">#FF2F66FF</SolidColorBrush>
+      <x:Double x:Key="adts.spacing.100">8</x:Double>
+      <x:Double x:Key="adts.radius.md">10</x:Double>
+    </ResourceDictionary>
+  </Styles.Resources>
+  <Style Selector="TextBlock.heading">
+    <Setter Property="FontSize" Value="24" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="Foreground" Value="{DynamicResource adts.color.text.primary}" />
+  </Style>
+  <Style Selector="Button.primary:pointerover">
+    <Setter Property="Opacity" Value="0.9" />
+  </Style>
+  <Style Selector="Border.card">
+    <Setter Property="Padding" Value="20" />
+    <Setter Property="Background" Value="{DynamicResource adts.color.surface.card}" />
+  </Style>
+  <Style Selector="Button.primary">
+    <Setter Property="Background" Value="{DynamicResource adts.color.brand.primary}" />
+    <Setter Property="Foreground" Value="White" />
+    <Setter Property="Padding" Value="14,8" />
+  </Style>
+</Styles>

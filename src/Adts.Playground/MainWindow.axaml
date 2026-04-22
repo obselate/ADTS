@@ -2,65 +2,134 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="780"
         x:Class="Adts.Playground.MainWindow"
         Title="ADTS Playground (Avalonia 11)"
-        Width="860"
-        Height="520">
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.ThemeDictionaries>
-                <ResourceDictionary x:Key="Light">
-                    <SolidColorBrush x:Key="adts.color.surface.canvas">#FFFFFFFF</SolidColorBrush>
-                    <SolidColorBrush x:Key="adts.color.surface.card">#FFF3F6FC</SolidColorBrush>
-                    <SolidColorBrush x:Key="adts.color.text.primary">#FF101622</SolidColorBrush>
-                </ResourceDictionary>
-                <ResourceDictionary x:Key="Dark">
-                    <SolidColorBrush x:Key="adts.color.surface.canvas">#FF121922</SolidColorBrush>
-                    <SolidColorBrush x:Key="adts.color.surface.card">#FF1A2432</SolidColorBrush>
-                    <SolidColorBrush x:Key="adts.color.text.primary">#FFF5F8FF</SolidColorBrush>
-                </ResourceDictionary>
-            </ResourceDictionary.ThemeDictionaries>
-            <SolidColorBrush x:Key="adts.color.brand.primary">#FF2F66FF</SolidColorBrush>
-            <x:Double x:Key="adts.spacing.100">8</x:Double>
-        </ResourceDictionary>
-    </Window.Resources>
-    <Window.Styles>
-        <Style Selector="TextBlock.heading">
-            <Setter Property="FontSize" Value="24" />
-            <Setter Property="FontWeight" Value="SemiBold" />
-            <Setter Property="Foreground" Value="{DynamicResource adts.color.text.primary}" />
-        </Style>
-        <Style Selector="Border.card">
-            <Setter Property="Padding" Value="20" />
-            <Setter Property="Background" Value="{DynamicResource adts.color.surface.card}" />
-        </Style>
-        <Style Selector="Button.primary">
-            <Setter Property="Background" Value="{StaticResource adts.color.brand.primary}" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="Padding" Value="14,8" />
-        </Style>
-        <Style Selector="Button.primary:pointerover">
-            <Setter Property="Opacity" Value="0.9" />
-        </Style>
-    </Window.Styles>
-    <Grid Background="{DynamicResource adts.color.surface.canvas}" RowDefinitions="Auto,*">
-        <TextBlock Grid.Row="0" Margin="20,18,20,8" Classes="heading" Text="ADTS Playground on Avalonia 11 + .NET 10" />
-        <Border Grid.Row="1" Classes="card" Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <StackPanel Spacing="{StaticResource adts.spacing.100}">
-                <TextBlock FontSize="16" FontWeight="Medium" Text="Tokens shown here are sourced from the ADTS starter example." />
-                <TextBlock TextWrapping="Wrap" Text="This window validates that theme dictionaries, resources, selectors, pseudo-classes, spacing, and radius tokens all work in a concrete Avalonia 11 app." />
-                <StackPanel Orientation="Horizontal" Spacing="{StaticResource adts.spacing.100}">
-                    <Button Classes="primary" Content="Primary action" />
-                    <ThemeVariantScope RequestedThemeVariant="Dark">
-                        <Border Classes="card" Padding="8">
-                            <TextBlock VerticalAlignment="Center"
-                                       Foreground="{DynamicResource adts.color.text.primary}"
-                                       Text="Dark variant scope preview" />
+        Width="1200"
+        Height="780"
+        Background="{DynamicResource adts.color.surface.canvas}">
+    <Grid RowDefinitions="Auto,*" Margin="20">
+        <StackPanel Spacing="4">
+            <TextBlock Classes="heading" Text="ADTS Playground on Avalonia 11 + .NET 10" />
+            <TextBlock Classes="body-secondary"
+                       Text="JSON tokens are compiled into AXAML resources/styles and consumed by this control showcase." />
+        </StackPanel>
+
+        <Border Grid.Row="1"
+                Classes="card"
+                Margin="0,14,0,0">
+            <TabControl>
+                <TabItem Header="Buttons + Inputs">
+                    <Grid Margin="16"
+                          RowDefinitions="Auto,Auto,*"
+                          ColumnDefinitions="2*,2*"
+                          ColumnSpacing="16"
+                          RowSpacing="16">
+                        <Border Classes="card" Grid.Row="0" Grid.Column="0" CornerRadius="10">
+                            <StackPanel Spacing="8">
+                                <TextBlock FontSize="16" FontWeight="SemiBold" Text="Action styles" />
+                                <StackPanel Orientation="Horizontal" Spacing="{DynamicResource adts.spacing.100}">
+                                    <Button Classes="primary" Content="Primary action" />
+                                    <Button Content="Secondary action" />
+                                    <ToggleSwitch Content="Enable feature" IsChecked="True" />
+                                </StackPanel>
+                                <ProgressBar Minimum="0"
+                                             Maximum="100"
+                                             Value="72"
+                                             ShowProgressText="True"
+                                             ProgressTextFormat="{}{0:0}/100 tokens aligned"
+                                             Height="20" />
+                            </StackPanel>
                         </Border>
-                    </ThemeVariantScope>
-                </StackPanel>
-            </StackPanel>
+
+                        <Border Classes="card" Grid.Row="0" Grid.Column="1" CornerRadius="10">
+                            <StackPanel Spacing="8">
+                                <TextBlock FontSize="16" FontWeight="SemiBold" Text="Form primitives" />
+                                <TextBox Watermark="Display name from design system" />
+                                <ComboBox SelectedIndex="0">
+                                    <ComboBoxItem Content="Light preset" />
+                                    <ComboBoxItem Content="Dark preset" />
+                                    <ComboBoxItem Content="Brand preset" />
+                                </ComboBox>
+                                <Slider x:Name="densitySlider" Minimum="0" Maximum="100" Value="44" />
+                                <TextBlock Classes="body-secondary"
+                                           Text="{Binding #densitySlider.Value, StringFormat='Density scale: {0:0}'}" />
+                            </StackPanel>
+                        </Border>
+
+                        <Expander Grid.Row="1"
+                                  Grid.Column="0"
+                                  Grid.ColumnSpan="2"
+                                  Header="Variant preview scope">
+                            <Grid Margin="0,10,0,0" ColumnDefinitions="*,*" ColumnSpacing="16">
+                                <ThemeVariantScope RequestedThemeVariant="Light">
+                                    <Border Classes="card" Padding="12" CornerRadius="10">
+                                        <TextBlock Text="Light variant token resolution" />
+                                    </Border>
+                                </ThemeVariantScope>
+                                <ThemeVariantScope Grid.Column="1" RequestedThemeVariant="Dark">
+                                    <Border Classes="card" Padding="12" CornerRadius="10">
+                                        <TextBlock Text="Dark variant token resolution" />
+                                    </Border>
+                                </ThemeVariantScope>
+                            </Grid>
+                        </Expander>
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="Lists + Navigation">
+                    <Grid Margin="16"
+                          ColumnDefinitions="2*,2*"
+                          ColumnSpacing="16">
+                        <Border Classes="card" CornerRadius="10">
+                            <StackPanel Spacing="8">
+                                <TextBlock FontSize="16" FontWeight="SemiBold" Text="Navigation list" />
+                                <ListBox SelectedIndex="0" Height="240">
+                                    <ListBoxItem Content="Foundations: color, spacing, radius" />
+                                    <ListBoxItem Content="Components: button, input, tabs" />
+                                    <ListBoxItem Content="States: hover, pressed, disabled" />
+                                    <ListBoxItem Content="Variants: light and dark resources" />
+                                    <ListBoxItem Content="Delivery: generated AXAML dictionaries" />
+                                </ListBox>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Column="1" Classes="card" CornerRadius="10">
+                            <StackPanel Spacing="8">
+                                <TextBlock FontSize="16" FontWeight="SemiBold" Text="Token status" />
+                                <TreeView Height="240">
+                                    <TreeViewItem Header="base">
+                                        <TreeViewItem Header="resources" />
+                                        <TreeViewItem Header="styles" />
+                                        <TreeViewItem Header="controlThemes" />
+                                    </TreeViewItem>
+                                    <TreeViewItem Header="variants">
+                                        <TreeViewItem Header="Light" />
+                                        <TreeViewItem Header="Dark" />
+                                    </TreeViewItem>
+                                </TreeView>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="Token Mapping Evidence">
+                    <Grid Margin="16" RowDefinitions="Auto,*" RowSpacing="12">
+                        <Border Classes="card" CornerRadius="10">
+                            <TextBlock TextWrapping="Wrap"
+                                       Text="This view documents how starter.tokens.json drives generated AXAML resources and style selectors consumed by the tabs in this window." />
+                        </Border>
+                        <Border Grid.Row="1" Classes="card" CornerRadius="10">
+                            <TextBox AcceptsReturn="True"
+                                     IsReadOnly="True"
+                                     TextWrapping="Wrap"
+                                     FontFamily="Consolas"
+                                     MinHeight="300"
+                                     Text="$ schema and resources are authored in spec/examples/starter.tokens.json&#10;Token compiler emits src/Adts.Playground/Generated/Adts.Generated.axaml&#10;App.axaml includes generated resources via &lt;StyleInclude Source=&quot;/Generated/Adts.Generated.axaml&quot; /&gt;&#10;MainWindow consumes keys and selectors: adts.color.*, adts.spacing.100, TextBlock.heading, Button.primary:pointerover" />
+                        </Border>
+                    </Grid>
+                </TabItem>
+            </TabControl>
         </Border>
     </Grid>
 </Window>
