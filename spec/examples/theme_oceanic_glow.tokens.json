@@ -103,7 +103,9 @@
       "radius.sm": "{rounded.sm}",
       "radius.md": "{rounded.md}",
       "radius.lg": "{rounded.lg}",
-      "radius.full": "{rounded.full}"
+      "radius.full": "{rounded.full}",
+      "radius.md.cornerRadius": "12",
+      "radius.lg.cornerRadius": "16"
     },
     "styles": [
       {

@@ -89,6 +89,7 @@
       "color.text.inverse": "{colors.text.inverse}",
       "color.border.default": "{colors.border.default}",
       "color.accent.primary": "{colors.accent.primary}",
+      "color.brand.primary": "{colors.accent.primary}",
       "spacing.100": "{spacing.100}",
       "spacing.300": "{spacing.300}",
       "spacing.400": "{spacing.400}",

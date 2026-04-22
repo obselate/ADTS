@@ -1,0 +1,121 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+  <Styles.Resources>
+    <ResourceDictionary>
+      <ControlTheme x:Key="Adts.ChromeButton" TargetType="Button">
+        <Setter Property="Background" Value="{DynamicResource adts.color.brand.primary}" />
+        <Setter Property="Foreground" Value="{DynamicResource adts.color.text.inverse}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource adts.color.border.default}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="14,8" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+          <ControlTemplate>
+            <Border x:Name="ButtonRoot"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    Padding="{TemplateBinding Padding}">
+              <ContentPresenter x:Name="ButtonContentPresenter"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                TextElement.Foreground="{TemplateBinding Foreground}"
+                                RecognizesAccessKey="True" />
+            </Border>
+          </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:pointerover /template/ Border#ButtonRoot">
+          <Setter Property="Opacity" Value="0.92" />
+        </Style>
+        <Style Selector="^:pressed /template/ Border#ButtonRoot">
+          <Setter Property="Opacity" Value="0.8" />
+        </Style>
+        <Style Selector="^:disabled /template/ Border#ButtonRoot">
+          <Setter Property="Opacity" Value="0.45" />
+        </Style>
+        <Style Selector="^:focus-visible /template/ Border#ButtonRoot">
+          <Setter Property="BorderThickness" Value="2" />
+        </Style>
+      </ControlTheme>
+
+      <ControlTheme x:Key="Adts.ChromeTabItem" TargetType="TabItem">
+        <Setter Property="Foreground" Value="{DynamicResource adts.color.text.secondary}" />
+        <Setter Property="Padding" Value="14,8" />
+        <Setter Property="Template">
+          <ControlTemplate>
+            <Border x:Name="TabRoot"
+                    CornerRadius="10,10,0,0"
+                    BorderBrush="{DynamicResource adts.color.border.default}"
+                    BorderThickness="1,1,1,0"
+                    Background="{DynamicResource adts.color.surface.card}"
+                    Padding="{TemplateBinding Padding}">
+              <ContentPresenter x:Name="TabContentPresenter"
+                                Content="{TemplateBinding Header}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                TextElement.Foreground="{TemplateBinding Foreground}" />
+            </Border>
+          </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:pointerover /template/ Border#TabRoot">
+          <Setter Property="Opacity" Value="0.9" />
+        </Style>
+        <Style Selector="^:selected /template/ Border#TabRoot">
+          <Setter Property="Background" Value="{DynamicResource adts.color.brand.primary}" />
+          <Setter Property="BorderBrush" Value="{DynamicResource adts.color.brand.primary}" />
+        </Style>
+        <Style Selector="^:selected /template/ ContentPresenter#TabContentPresenter">
+          <Setter Property="TextElement.Foreground" Value="{DynamicResource adts.color.text.inverse}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Border#TabRoot">
+          <Setter Property="Opacity" Value="0.45" />
+        </Style>
+      </ControlTheme>
+
+      <ControlTheme x:Key="Adts.ChromeListBoxItem" TargetType="ListBoxItem">
+        <Setter Property="Padding" Value="10,8" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Template">
+          <ControlTemplate>
+            <Border x:Name="ListItemRoot"
+                    Background="{DynamicResource adts.color.surface.card}"
+                    BorderBrush="{DynamicResource adts.color.border.default}"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Padding="{TemplateBinding Padding}"
+                    Margin="0,0,0,6">
+              <ContentPresenter x:Name="ListItemContentPresenter"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                TextElement.Foreground="{DynamicResource adts.color.text.primary}" />
+            </Border>
+          </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:pointerover /template/ Border#ListItemRoot">
+          <Setter Property="BorderBrush" Value="{DynamicResource adts.color.brand.primary}" />
+        </Style>
+        <Style Selector="^:pressed /template/ Border#ListItemRoot">
+          <Setter Property="Opacity" Value="0.78" />
+        </Style>
+        <Style Selector="^:selected /template/ Border#ListItemRoot">
+          <Setter Property="Background" Value="{DynamicResource adts.color.brand.primary}" />
+          <Setter Property="BorderBrush" Value="{DynamicResource adts.color.brand.primary}" />
+        </Style>
+        <Style Selector="^:selected /template/ ContentPresenter#ListItemContentPresenter">
+          <Setter Property="TextElement.Foreground" Value="{DynamicResource adts.color.text.inverse}" />
+        </Style>
+      </ControlTheme>
+    </ResourceDictionary>
+  </Styles.Resources>
+</Styles>

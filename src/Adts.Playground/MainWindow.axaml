@@ -18,7 +18,7 @@
         <Border Grid.Row="1"
                 Classes="card"
                 Margin="0,14,0,0">
-            <TabControl>
+            <TabControl ItemContainerTheme="{StaticResource Adts.ChromeTabItem}">
                 <TabItem Header="Buttons + Inputs">
                     <Grid Margin="16"
                           RowDefinitions="Auto,Auto,*"
@@ -29,8 +29,12 @@
                             <StackPanel Spacing="8">
                                 <TextBlock FontSize="16" FontWeight="SemiBold" Text="Action styles" />
                                 <StackPanel Orientation="Horizontal" Spacing="{DynamicResource adts.spacing.100}">
-                                    <Button Classes="primary" Content="Primary action" Click="PrimaryActionClicked" />
-                                    <Button Content="Secondary action" />
+                                    <Button Classes="primary"
+                                            Theme="{StaticResource Adts.ChromeButton}"
+                                            Content="Primary action"
+                                            Click="PrimaryActionClicked" />
+                                    <Button Theme="{StaticResource Adts.ChromeButton}"
+                                            Content="Secondary action" />
                                     <Border Theme="{StaticResource StatusBadgeTheme}" VerticalAlignment="Center">
                                         <TextBlock Text="Status Badge" Foreground="{DynamicResource adts.color.text.inverse}" />
                                     </Border>
@@ -55,7 +59,9 @@
                                         <ComboBoxItem Content="Amber Terminal" />
                                         <ComboBoxItem Content="Oceanic Glow" />
                                     </ComboBox>
-                                    <Button Content="Apply theme" Click="ApplyPresetClicked" />
+                                    <Button Theme="{StaticResource Adts.ChromeButton}"
+                                            Content="Apply theme"
+                                            Click="ApplyPresetClicked" />
                                 </StackPanel>
                                 <Slider x:Name="densitySlider" Minimum="0" Maximum="100" Value="44" />
                                 <TextBlock Classes="body-secondary"
@@ -100,7 +106,9 @@
                         <Border Classes="card" CornerRadius="10">
                             <StackPanel Spacing="8">
                                 <TextBlock FontSize="16" FontWeight="SemiBold" Text="Navigation list" />
-                                <ListBox SelectedIndex="0" Height="240">
+                                <ListBox SelectedIndex="0"
+                                         Height="240"
+                                         ItemContainerTheme="{StaticResource Adts.ChromeListBoxItem}">
                                     <ListBoxItem Content="Foundations: color, spacing, radius" />
                                     <ListBoxItem Content="Components: button, input, tabs" />
                                     <ListBoxItem Content="States: hover, pressed, disabled" />

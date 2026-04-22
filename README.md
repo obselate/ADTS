@@ -41,6 +41,20 @@ ADTS v0.2 uses a 3-tier precision model:
 
 The playground can switch among all three generated theme files at runtime from the preset dropdown. Each theme defines explicit state selectors and custom control themes.
 
+## Non-Fluent professional template pack
+
+The playground includes a handcrafted non-Fluent control template pack:
+
+- `src/Adts.Playground/Styles/Adts.NonFluentControlTemplates.axaml`
+
+It defines professional-grade `ControlTheme` templates for:
+
+- `Adts.ChromeButton`
+- `Adts.ChromeTabItem`
+- `Adts.ChromeListBoxItem`
+
+These templates use explicit state selectors (pointerover/pressed/selected/disabled/focus-visible) and consume ADTS-generated resources so the same template chrome works across all three token themes.
+
 ## Hot reload workflow
 
 For UI iteration, use:

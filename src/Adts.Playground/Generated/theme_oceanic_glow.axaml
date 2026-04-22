@@ -20,6 +20,8 @@
       <x:Double x:Key="adts.radius.md">12</x:Double>
       <x:Double x:Key="adts.radius.lg">16</x:Double>
       <x:Double x:Key="adts.radius.full">999</x:Double>
+      <x:Double x:Key="adts.radius.md.cornerRadius">12</x:Double>
+      <x:Double x:Key="adts.radius.lg.cornerRadius">16</x:Double>
       <!-- Generated control themes -->
       <!-- PrimaryButtonTheme: basedOnFluent=false -->
       <ControlTheme x:Key="PrimaryButtonTheme" TargetType="Button">

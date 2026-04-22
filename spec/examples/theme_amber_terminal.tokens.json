@@ -163,6 +163,7 @@
           "Background": "{components.button.primary.background}",
           "Foreground": "{components.button.primary.foreground}",
           "Padding": "{components.button.primary.padding}",
+          "CornerRadius": "{components.button.primary.cornerRadius}",
           "BorderThickness": "1",
           "BorderBrush": "{components.button.primary.borderBrush}"
         }
