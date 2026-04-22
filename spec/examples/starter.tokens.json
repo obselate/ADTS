@@ -73,14 +73,28 @@
         "borderBrush": "{colors.border.default}",
         "padding": "20",
         "cornerRadius": "{rounded.md}"
+      },
+      "badge.status": {
+        "background": "{colors.neutral.900}",
+        "foreground": "{colors.neutral.100}",
+        "padding": "6,2",
+        "cornerRadius": "{rounded.sm}"
+      },
+      "pill-tag": {
+        "background": "{colors.neutral.200}",
+        "foreground": "{colors.neutral.900}",
+        "padding": "8,4",
+        "cornerRadius": "{rounded.lg}"
       }
     }
   },
   "avalonia": {
     "resourcePrefix": "adts",
-    "theme": {
-      "baseTheme": "Fluent",
-      "includeDefaults": true
+    "app": {
+      "theme": {
+        "base": "Fluent",
+        "requestedVariant": "Default"
+      }
     },
     "resources": {
       "color.neutral.100": "{colors.neutral.100}",
@@ -252,7 +266,7 @@
     "controlThemes": {
       "PrimaryButtonTheme": {
         "targetType": "Button",
-        "basedOnFluent": true,
+        "fluentOverride": true,
         "setters": {
           "Background": "{components.button.primary.background}",
           "Foreground": "{components.button.primary.foreground}",
@@ -261,6 +275,34 @@
         "states": {
           "^:pointerover": {
             "Opacity": "0.85"
+          }
+        }
+      },
+      "StatusBadgeTheme": {
+        "targetType": "Border",
+        "xKey": "StatusBadgeTheme",
+        "setters": {
+          "Background": "{components.badge.status.background}",
+          "Padding": "{components.badge.status.padding}",
+          "CornerRadius": "{components.badge.status.cornerRadius}"
+        },
+        "states": {
+          "^:pointerover": {
+            "Opacity": "0.9"
+          }
+        }
+      },
+      "PillTagTheme": {
+        "targetType": "Border",
+        "xKey": "PillTagTheme",
+        "setters": {
+          "Background": "{components.pill-tag.background}",
+          "Padding": "{components.pill-tag.padding}",
+          "CornerRadius": "{components.pill-tag.cornerRadius}"
+        },
+        "states": {
+          "^:pointerover": {
+            "BorderThickness": "1"
           }
         }
       }

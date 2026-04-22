@@ -1,4 +1,4 @@
-# ADTS 0.2 (Draft)
+# ADTS 0.3 (Draft)
 
 Avalonia Design Token Schema (ADTS) defines a machine-friendly token contract for generating consistent Avalonia 11 XAML styles and themes.
 
@@ -21,10 +21,10 @@ Avalonia Design Token Schema (ADTS) defines a machine-friendly token contract fo
 Top-level object:
 
 - `$schema`: JSON schema URI.
-- `adtsVersion`: ADTS spec version (for this draft, `0.2.0`).
+- `adtsVersion`: ADTS spec version (for this draft, `0.3.0`).
 - `metadata`: optional author/project information.
-- `tokens`: platform-neutral design token domains (colors, typography, spacing, rounded).
-- `avalonia`: platform projection for resource/style/theme mapping.
+- `tokens`: platform-neutral design token domains (colors, typography, spacing, rounded, components).
+- `avalonia`: platform projection for resource/style/theme mapping with per-theme control theme overrides.
 
 `tokens` contains:
 
@@ -32,11 +32,12 @@ Top-level object:
 - `typography`: named typography objects (`fontFamily`, `fontSize`, `fontWeight`, `lineHeight`, `letterSpacing`).
 - `spacing`: spacing scale values.
 - `rounded`: corner radius scale values.
+- `components`: semantic component contracts, including custom controls and explicit states.
 
 `avalonia` contains:
 
 - `resources`: token -> Avalonia resource key projection.
-- `variants` (optional): `Light`/`Dark` resource key overrides.
+- `variants` (optional): `Light`/`Dark` resource key overrides and per-theme `controlThemes`.
 - `styles`: selector-based setters for Avalonia styles.
 - `controlThemes`: named control themes with optional fluent behavior hints.
 
@@ -59,6 +60,8 @@ Top-level object:
 
 This follows Avalonia 11 theme-variant behavior.
 
+`avalonia.variants.<Variant>.controlThemes` can override control theme setters/states for that specific theme variant.
+
 ### 3) Styles
 
 `avalonia.styles` entries use Avalonia selector syntax (`Button.primary:pointerover`, etc.) and setter dictionaries.
@@ -75,8 +78,17 @@ Each setter maps to:
 - Key in `controlThemes` object -> `x:Key`.
 - `targetType` -> `TargetType`.
 - `setters` -> `<Setter .../>`.
-- Optional `states` object where keys are nested selectors (for example `^:pointerover`) and values are setter maps.
-- Optional `baseFluent` indicates the generated theme should keep Fluent defaults and overlay targeted setters/states.
+- Optional `states` object where keys are explicit nested selectors (for example `^:pointerover`, `^:pressed`, `^:disabled`) and values are setter maps.
+- Optional `basedOnFluent` indicates the generated theme should keep Fluent defaults and overlay targeted setters/states.
+- Optional `xKey` allows custom control themes (for example `xKey: "Adts.TagPill"`), while `fluentOverride` allows overriding Fluent default control theme when desired.
+
+## Three-tier Precision Model
+
+ADTS 0.3 uses three precision tiers:
+
+1. **Foundation tokens (strict):** `tokens.colors`, `tokens.typography`, `tokens.spacing`, `tokens.rounded`.
+2. **Component contracts (strict-ish):** `tokens.components.<component>.<variant|state>` for semantic UI behavior and custom controls.
+3. **Avalonia projection (explicit):** `avalonia.resources`, `avalonia.styles`, `avalonia.controlThemes`, plus per-variant overrides.
 
 ## Authoring Constraints for Agents
 

@@ -64,6 +64,24 @@
           <Setter Property="Opacity" Value="0.85" />
         </Style>
       </ControlTheme>
+      <!-- StatusBadgeTheme: basedOnFluent=false -->
+      <ControlTheme x:Key="StatusBadgeTheme" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource adts.color.brand.primary}" />
+        <Setter Property="Padding" Value="6,2" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Style Selector="^:pointerover">
+          <Setter Property="Opacity" Value="0.9" />
+        </Style>
+      </ControlTheme>
+      <!-- PillTagTheme: basedOnFluent=false -->
+      <ControlTheme x:Key="PillTagTheme" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource adts.color.surface.card}" />
+        <Setter Property="Padding" Value="8,4" />
+        <Setter Property="CornerRadius" Value="14" />
+        <Style Selector="^:pointerover">
+          <Setter Property="BorderThickness" Value="1" />
+        </Style>
+      </ControlTheme>
     </ResourceDictionary>
   </Styles.Resources>
   <Style Selector="TextBlock.heading">

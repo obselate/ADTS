@@ -128,7 +128,8 @@ if (controlThemesNode.ValueKind == JsonValueKind.Object)
             ? targetTypeNode.GetString() ?? "Control"
             : "Control";
         var basedOnFluent =
-            (themeDef.TryGetProperty("basedOnFluent", out var basedOnFluentNode) && basedOnFluentNode.ValueKind == JsonValueKind.True)
+            (themeDef.TryGetProperty("fluentOverride", out var fluentOverrideNode) && fluentOverrideNode.ValueKind == JsonValueKind.True)
+            || (themeDef.TryGetProperty("basedOnFluent", out var basedOnFluentNode) && basedOnFluentNode.ValueKind == JsonValueKind.True)
             || (themeDef.TryGetProperty("baseFluent", out var legacyFluentNode) && legacyFluentNode.ValueKind == JsonValueKind.True);
 
         controlThemeBuffer.AppendLine(

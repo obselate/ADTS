@@ -59,7 +59,8 @@
         "colors",
         "typography",
         "spacing",
-        "rounded"
+        "rounded",
+        "components"
       ],
       "additionalProperties": false,
       "properties": {
@@ -95,6 +96,17 @@
           "type": "object",
           "additionalProperties": {
             "$ref": "#/$defs/literalOrTokenRef"
+          }
+        },
+        "components": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": {
+              "$ref": "#/$defs/literalOrTokenRef"
+            }
           }
         }
       }
@@ -160,6 +172,12 @@
           "type": "array",
           "items": {
             "$ref": "#/$defs/styleDefinition"
+          }
+        },
+        "styleStates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/styleStateDefinition"
           }
         },
         "controlThemes": {
@@ -257,6 +275,32 @@
         }
       }
     },
+    "styleStateDefinition": {
+      "type": "object",
+      "required": [
+        "baseSelector",
+        "stateSelector",
+        "setters"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "baseSelector": {
+          "type": "string",
+          "minLength": 1
+        },
+        "stateSelector": {
+          "type": "string",
+          "pattern": "^\\^:[a-zA-Z0-9_-]+$"
+        },
+        "setters": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "$ref": "#/$defs/literalOrTokenRef"
+          }
+        }
+      }
+    },
     "variantDefinition": {
       "type": "object",
       "required": [
@@ -289,9 +333,9 @@
           "type": "string",
           "minLength": 1
         },
-        "fluentOverride": {
+        "basedOnFluent": {
           "type": "boolean",
-          "description": "If true and xKey is omitted, generator should emit x:Key=\"{x:Type <targetType>}\"."
+          "description": "If true, generated theme is intended to overlay Fluent defaults."
         },
         "setters": {
           "type": "object",
