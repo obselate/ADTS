@@ -114,12 +114,28 @@
                 </TabItem>
 
                 <TabItem Header="Token Mapping Evidence">
-                    <Grid Margin="16" RowDefinitions="Auto,*" RowSpacing="12">
+                    <Grid Margin="16" RowDefinitions="Auto,Auto,*" RowSpacing="12">
                         <Border Classes="card" CornerRadius="10">
                             <TextBlock TextWrapping="Wrap"
                                        Text="This view documents how starter.tokens.json drives generated AXAML resources and style selectors consumed by the tabs in this window." />
                         </Border>
                         <Border Grid.Row="1" Classes="card" CornerRadius="10">
+                            <StackPanel Spacing="8">
+                                <TextBlock Classes="subheading" Text="Typography weights (100-900)" />
+                                <WrapPanel ItemHeight="26" ItemWidth="180">
+                                    <TextBlock Classes="weight-100" Text="Weight 100 - Thin" />
+                                    <TextBlock Classes="weight-200" Text="Weight 200 - ExtraLight" />
+                                    <TextBlock Classes="weight-300" Text="Weight 300 - Light" />
+                                    <TextBlock Classes="weight-400" Text="Weight 400 - Normal" />
+                                    <TextBlock Classes="weight-500" Text="Weight 500 - Medium" />
+                                    <TextBlock Classes="weight-600" Text="Weight 600 - SemiBold" />
+                                    <TextBlock Classes="weight-700" Text="Weight 700 - Bold" />
+                                    <TextBlock Classes="weight-800" Text="Weight 800 - ExtraBold" />
+                                    <TextBlock Classes="weight-900" Text="Weight 900 - Black" />
+                                </WrapPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Row="2" Classes="card" CornerRadius="10">
                             <TextBox AcceptsReturn="True"
                                      IsReadOnly="True"
                                      TextWrapping="Wrap"

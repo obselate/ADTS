@@ -3,7 +3,7 @@
   "adtsVersion": "0.1.0",
   "metadata": {
     "name": "ADTS Starter Identity",
-    "description": "Minimal Avalonia 11 token baseline for agents.",
+    "description": "High-contrast black/white baseline with 100-900 weighting.",
     "framework": "Avalonia",
     "frameworkVersionRange": "11.x"
   },
@@ -14,21 +14,83 @@
   "themes": {
     "base": {
       "resources": {
+        "color.neutral.100": {
+          "$type": "color",
+          "$value": "#FFFFFFFF"
+        },
+        "color.neutral.200": {
+          "$type": "color",
+          "$value": "#FFF2F2F2"
+        },
+        "color.neutral.300": {
+          "$type": "color",
+          "$value": "#FFE6E6E6"
+        },
+        "color.neutral.400": {
+          "$type": "color",
+          "$value": "#FFD9D9D9"
+        },
+        "color.neutral.500": {
+          "$type": "color",
+          "$value": "#FFBFBFBF"
+        },
+        "color.neutral.600": {
+          "$type": "color",
+          "$value": "#FF8C8C8C"
+        },
+        "color.neutral.700": {
+          "$type": "color",
+          "$value": "#FF595959"
+        },
+        "color.neutral.800": {
+          "$type": "color",
+          "$value": "#FF262626"
+        },
+        "color.neutral.900": {
+          "$type": "color",
+          "$value": "#FF000000"
+        },
         "color.surface.canvas": {
           "$type": "color",
-          "$value": "#FF121922"
+          "$value": {
+            "ref": "color.neutral.100"
+          }
         },
         "color.surface.card": {
           "$type": "color",
-          "$value": "#FF1A2432"
+          "$value": {
+            "ref": "color.neutral.200"
+          }
         },
         "color.text.primary": {
           "$type": "color",
-          "$value": "#FFF5F8FF"
+          "$value": {
+            "ref": "color.neutral.900"
+          }
+        },
+        "color.text.secondary": {
+          "$type": "color",
+          "$value": {
+            "ref": "color.neutral.700"
+          }
+        },
+        "color.text.inverse": {
+          "$type": "color",
+          "$value": {
+            "ref": "color.neutral.100"
+          }
+        },
+        "color.border.default": {
+          "$type": "color",
+          "$value": {
+            "ref": "color.neutral.400"
+          }
         },
         "color.brand.primary": {
           "$type": "color",
-          "$value": "#FF2F66FF"
+          "$value": {
+            "ref": "color.neutral.900"
+          }
         },
         "spacing.100": {
           "$type": "double",
@@ -41,23 +103,229 @@
           "$value": {
             "ref": "aliases.radius.md"
           }
+        },
+        "typography.weight.100": {
+          "$type": "double",
+          "$value": 100
+        },
+        "typography.weight.200": {
+          "$type": "double",
+          "$value": 200
+        },
+        "typography.weight.300": {
+          "$type": "double",
+          "$value": 300
+        },
+        "typography.weight.400": {
+          "$type": "double",
+          "$value": 400
+        },
+        "typography.weight.500": {
+          "$type": "double",
+          "$value": 500
+        },
+        "typography.weight.600": {
+          "$type": "double",
+          "$value": 600
+        },
+        "typography.weight.700": {
+          "$type": "double",
+          "$value": 700
+        },
+        "typography.weight.800": {
+          "$type": "double",
+          "$value": 800
+        },
+        "typography.weight.900": {
+          "$type": "double",
+          "$value": 900
+        }
+      },
+      "variants": {
+        "Light": {
+          "resources": {
+            "color.surface.canvas": {
+              "$type": "color",
+              "$value": "#FFFFFFFF"
+            },
+            "color.surface.card": {
+              "$type": "color",
+              "$value": "#FFF2F2F2"
+            },
+            "color.text.primary": {
+              "$type": "color",
+              "$value": "#FF000000"
+            },
+            "color.text.secondary": {
+              "$type": "color",
+              "$value": "#FF595959"
+            },
+            "color.text.inverse": {
+              "$type": "color",
+              "$value": "#FFFFFFFF"
+            },
+            "color.brand.primary": {
+              "$type": "color",
+              "$value": "#FF000000"
+            },
+            "color.border.default": {
+              "$type": "color",
+              "$value": "#FFD9D9D9"
+            }
+          }
+        },
+        "Dark": {
+          "resources": {
+            "color.surface.canvas": {
+              "$type": "color",
+              "$value": "#FF000000"
+            },
+            "color.surface.card": {
+              "$type": "color",
+              "$value": "#FF1A1A1A"
+            },
+            "color.text.primary": {
+              "$type": "color",
+              "$value": "#FFFFFFFF"
+            },
+            "color.text.secondary": {
+              "$type": "color",
+              "$value": "#FFD9D9D9"
+            },
+            "color.text.inverse": {
+              "$type": "color",
+              "$value": "#FF000000"
+            },
+            "color.brand.primary": {
+              "$type": "color",
+              "$value": "#FFFFFFFF"
+            },
+            "color.border.default": {
+              "$type": "color",
+              "$value": "#FF595959"
+            }
+          }
         }
       },
       "styles": [
         {
           "selector": "TextBlock.heading",
           "setters": {
-            "FontSize": 24,
-            "FontWeight": "SemiBold",
+            "FontSize": 28,
+            "FontWeight": 800,
             "Foreground": {
               "ref": "color.text.primary"
             }
           }
         },
         {
+          "selector": "TextBlock.subheading",
+          "setters": {
+            "FontSize": 18,
+            "FontWeight": 700,
+            "Foreground": {
+              "ref": "color.text.primary"
+            }
+          }
+        },
+        {
+          "selector": "TextBlock.body-secondary",
+          "setters": {
+            "FontSize": 14,
+            "FontWeight": 400,
+            "Foreground": {
+              "ref": "color.text.secondary"
+            }
+          }
+        },
+        {
+          "selector": "TextBlock.weight-100",
+          "setters": {
+            "FontWeight": 100
+          }
+        },
+        {
+          "selector": "TextBlock.weight-200",
+          "setters": {
+            "FontWeight": 200
+          }
+        },
+        {
+          "selector": "TextBlock.weight-300",
+          "setters": {
+            "FontWeight": 300
+          }
+        },
+        {
+          "selector": "TextBlock.weight-400",
+          "setters": {
+            "FontWeight": 400
+          }
+        },
+        {
+          "selector": "TextBlock.weight-500",
+          "setters": {
+            "FontWeight": 500
+          }
+        },
+        {
+          "selector": "TextBlock.weight-600",
+          "setters": {
+            "FontWeight": 600
+          }
+        },
+        {
+          "selector": "TextBlock.weight-700",
+          "setters": {
+            "FontWeight": 700
+          }
+        },
+        {
+          "selector": "TextBlock.weight-800",
+          "setters": {
+            "FontWeight": 800
+          }
+        },
+        {
+          "selector": "TextBlock.weight-900",
+          "setters": {
+            "FontWeight": 900
+          }
+        },
+        {
+          "selector": "Border.card",
+          "setters": {
+            "Padding": "20",
+            "CornerRadius": "10",
+            "BorderThickness": "1",
+            "Background": {
+              "ref": "color.surface.card"
+            },
+            "BorderBrush": {
+              "ref": "color.border.default"
+            }
+          }
+        },
+        {
+          "selector": "Button.primary",
+          "setters": {
+            "Background": {
+              "ref": "color.brand.primary"
+            },
+            "Foreground": {
+              "ref": "color.text.inverse"
+            },
+            "Padding": "14,8",
+            "BorderThickness": "1",
+            "BorderBrush": {
+              "ref": "color.border.default"
+            }
+          }
+        },
+        {
           "selector": "Button.primary:pointerover",
           "setters": {
-            "Opacity": 0.9
+            "Opacity": 0.85
           }
         }
       ],
@@ -68,14 +336,14 @@
             "Background": {
               "ref": "color.brand.primary"
             },
-            "Foreground": "White",
-            "CornerRadius": {
-              "ref": "radius.md"
-            }
+            "Foreground": {
+              "ref": "color.text.inverse"
+            },
+            "CornerRadius": "10"
           },
           "states": {
             "^:pointerover": {
-              "Opacity": 0.9
+              "Opacity": 0.85
             }
           }
         }

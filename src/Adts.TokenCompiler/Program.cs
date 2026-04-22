@@ -124,16 +124,6 @@ if (styles.ValueKind == JsonValueKind.Array)
         sb.AppendLine("  </Style>");
     }
 }
-
-sb.AppendLine("  <Style Selector=\"Border.card\">");
-sb.AppendLine("    <Setter Property=\"Padding\" Value=\"20\" />");
-sb.AppendLine("    <Setter Property=\"Background\" Value=\"{DynamicResource adts.color.surface.card}\" />");
-sb.AppendLine("  </Style>");
-sb.AppendLine("  <Style Selector=\"Button.primary\">");
-sb.AppendLine("    <Setter Property=\"Background\" Value=\"{DynamicResource adts.color.brand.primary}\" />");
-sb.AppendLine("    <Setter Property=\"Foreground\" Value=\"White\" />");
-sb.AppendLine("    <Setter Property=\"Padding\" Value=\"14,8\" />");
-sb.AppendLine("  </Style>");
 sb.AppendLine("</Styles>");
 
 Directory.CreateDirectory(Path.GetDirectoryName(outputPath)!);
